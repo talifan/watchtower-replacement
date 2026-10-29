@@ -1,0 +1,26 @@
+db:
+  path: /data/diun.db
+
+watch:
+  workers: 10
+  schedule: "0 4 * * 0"
+  jitter: 30s
+  firstCheckNotif: false
+  runOnStartup: false
+
+defaults:
+  watchRepo: false
+  notifyOn:
+    - new
+    - update
+  sortTags: reverse
+
+providers:
+  file:
+    filename: /etc/diun/images.yml
+
+notif:
+  webhook:
+    endpoint: http://host.docker.internal:9868/diun
+    method: POST
+    timeout: 10s

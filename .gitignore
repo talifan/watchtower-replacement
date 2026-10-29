@@ -1,0 +1,26 @@
+# Local secrets and host runtime state
+.env
+.env.*
+!.env.example
+!.env.template
+credentials/
+secrets/
+/diun-docker-config.json
+/diun-telegram-token
+/diun-telegram-chatids.json
+*.pem
+*.key
+*.log
+*.db
+*.db-*
+*.sqlite*
+/state*.json
+
+# Local Python environments and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/

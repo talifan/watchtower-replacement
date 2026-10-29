@@ -1,0 +1,65 @@
+# Curated inventory of external registry images used by the running containers.
+# Locally built images are intentionally omitted.
+- name: ghcr.io/crazy-max/diun:4.33.1
+  watch_repo: true
+  sort_tags: semver
+  max_tags: 10
+  include_tags:
+    - '^4\.[0-9]+\.[0-9]+$'
+- name: diygod/rsshub:latest
+- name: ghcr.io/flaresolverr/flaresolverr:latest
+- name: ghcr.io/hotio/jellyfin:latest
+- name: ghcr.io/hotio/prowlarr:latest
+- name: ghcr.io/hotio/qbittorrent:latest
+- name: ghcr.io/hotio/radarr:latest
+- name: ghcr.io/hotio/sonarr:latest
+- name: ghcr.io/immich-app/immich-machine-learning:release
+- name: ghcr.io/immich-app/immich-server:release
+- name: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
+- name: ghcr.io/seerr-team/seerr:latest
+- name: ghcr.io/yourok/torrserver:latest
+- name: docker.io/linuxserver/heimdall:latest
+- name: docker.io/linuxserver/jackett:latest
+- name: docker.io/s1t5/mailarchiver:2610.1
+  watch_repo: true
+  sort_tags: lexicographical
+  max_tags: 10
+  include_tags:
+    - '^\d{4}\.\d+$'
+- name: mcr.microsoft.com/playwright/mcp:v0.0.82
+  watch_repo: true
+  sort_tags: semver
+  max_tags: 10
+  include_tags:
+    - '^v0\.0\.[0-9]+$'
+- name: ollama/ollama:latest
+- name: openspeedtest/latest
+- name: portainer/portainer-ee:latest
+- name: docker.io/jc21/nginx-proxy-manager:2.16.0
+  watch_repo: true
+  sort_tags: semver
+  max_tags: 10
+  include_tags:
+    - '^2\.[0-9]+\.[0-9]+$'
+- name: ghcr.io/qdrant/qdrant/qdrant:v1.19.1
+  watch_repo: true
+  sort_tags: semver
+  max_tags: 10
+  include_tags:
+    - '^v1\.19\.[0-9]+$'
+- name: ghcr.io/rclone/rclone:1.75.2
+  watch_repo: true
+  sort_tags: semver
+  max_tags: 10
+  include_tags:
+    - '^1\.[0-9]+\.[0-9]+$'
+- name: redis:alpine
+- name: postgres:16-alpine
+- name: docker.io/valkey/valkey:8-bookworm
+- name: vaultwarden/server:1.37.3
+  watch_repo: true
+  sort_tags: semver
+  max_tags: 10
+  include_tags:
+    - '^1\.[0-9]+\.[0-9]+$'
+- name: ruslanys/yandex.disk

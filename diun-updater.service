@@ -1,0 +1,44 @@
+[Unit]
+Description=Authenticated Diun to Docker Compose update bridge
+After=snap.docker.dockerd.service network-online.target
+Requires=snap.docker.dockerd.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/example/repo
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+Environment=DOCKER_CONFIG=/root/.docker
+ExecStart=/usr/bin/python3 /home/example/repo/watchtower-replacement/updater.py
+Restart=on-failure
+RestartSec=5s
+StateDirectory=diun-updater
+StateDirectoryMode=0700
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectClock=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictRealtime=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH
+AmbientCapabilities=CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH
+ReadWritePaths=/home/example/repo/watchtower-replacement
+ReadWritePaths=/home/example/repo/immich
+ReadWritePaths=/home/example/repo/mcp-playwright
+ReadWritePaths=/home/example/repo/proxy
+ReadWritePaths=/home/example/repo/qdrant
+ReadWritePaths=/home/example/repo/yandexdisk_backup
+ReadWritePaths=/home/example/repo/vaultwarden
+ReadWritePaths=/home/example/docker/mailarchive
+
+[Install]
+WantedBy=multi-user.target

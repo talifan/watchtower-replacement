@@ -1,0 +1,36 @@
+name: image-update-monitor
+
+services:
+  diun:
+    image: ghcr.io/crazy-max/diun:4.33.1
+    container_name: image-update-monitor
+    command: serve --config /etc/diun/diun.yml
+    network_mode: bridge
+    restart: unless-stopped
+    read_only: true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    volumes:
+      - diun-data:/data
+      - ./diun.yml:/etc/diun/diun.yml:ro
+      - ./images.yml:/etc/diun/images.yml:ro
+      - /root/snap/docker/common/diun-docker-config.json:/root/.docker/config.json:ro
+    environment:
+      TZ: Europe/Moscow
+      LOG_LEVEL: info
+      LOG_JSON: "false"
+      DIUN_NOTIF_WEBHOOK_HEADERS_AUTHORIZATION: "Bearer ${DIUN_UPDATER_TOKEN:?set in local .env}"
+      DIUN_NOTIF_WEBHOOK_HEADERS_CONTENT-TYPE: application/json
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    healthcheck:
+      test: ["CMD", "diun", "healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  diun-data:
